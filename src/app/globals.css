@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	/* change below colors according to your app theme */
+	background-color: #0a0a0a;
+	color: #ededed;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+/* you can remove below classes and add your own for fonts,colors, etc  */
+.font-open-sans {
+	font-family: 'Open Sans', sans-serif;
+}
+.font-gochi-hand {
+	font-family: 'Gochi Hand', cursive;
+}
+@layer base {
+	:root {
+		--radius: 0.5rem;
+	}
+}
