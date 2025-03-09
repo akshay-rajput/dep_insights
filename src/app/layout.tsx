@@ -9,15 +9,9 @@ const openSans = Open_Sans({
 	subsets: ['latin'],
 });
 
-const gochiHand = Gochi_Hand({
-	variable: '--font-gochi-hand',
-	weight: '400',
-	subsets: ['latin'],
-});
-
 export const metadata: Metadata = {
-	title: 'Next JumpStart',
-	description: 'An opinionated starter kit for Nextjs.',
+	title: 'Dep Insights',
+	description: 'Package insights',
 };
 
 export default function RootLayout({
@@ -26,16 +20,16 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang='en'>
+		<html lang='en' suppressHydrationWarning>
 			<body
-				className={`${openSans.variable} ${gochiHand.variable} antialiased`}
+				className={`${openSans.variable} dark bg-zinc-800 text-stone-50 antialiased`}
 			>
 				<div className='main-container flex flex-col min-h-screen'>
 					{/* boilerplate navbar */}
 					<Navbar />
 
 					{/* main content */}
-					<main className='flex-grow max-w-3xl mx-auto flex flex-col w-full font-open-sans'>
+					<main className='flex-grow max-w-6xl mx-auto flex flex-col w-full font-open-sans'>
 						{children}
 					</main>
 
