@@ -9,7 +9,7 @@ export default function Navbar() {
 
 	return (
 		<nav className='navbar w-full sticky top-0 backdrop-blur-md p-4 '>
-			<div className='w-full navbar-blurred-backdrop max-w-3xl mx-auto flex items-center justify-between'>
+			<div className='w-full navbar-blurred-backdrop max-w-6xl mx-auto flex items-center justify-between'>
 				<div className='logo'>
 					<Link href='/'>
 						<Image
