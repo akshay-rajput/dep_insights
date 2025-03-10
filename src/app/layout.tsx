@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Open_Sans, Gochi_Hand } from 'next/font/google';
+import { Open_Sans } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/shared/Navbar';
 
@@ -34,15 +34,15 @@ export default function RootLayout({
 					</main>
 
 					{/* footer */}
-					<footer className='flex items-center py-2 border-t border-stone-800 justify-center'>
-						<p className='text-stone-500 flex items-center justify-center gap-1 font-gochi-hand tracking-wide md:text-lg'>
-							a foundation by{' '}
+					<footer className='flex items-center py-2 justify-center mt-8'>
+						<p className='text-gray-400 flex items-center justify-center gap-1 tracking-wide text-sm'>
+							insights powered by{' '}
 							<Link
-								href='https://github.com/akshay-rajput'
+								href='https://docs.safedep.io/guides/insights-api-using-typescript'
 								target='_blank'
-								className='text-amber-500 hover:underline decoration-wavy'
+								className='underline underline-offset-4 hover:text-blue-500 hover:underline'
 							>
-								akshay
+								safedep insights api
 							</Link>
 						</p>
 					</footer>
