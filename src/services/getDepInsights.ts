@@ -2,6 +2,7 @@ import { createClient, Interceptor } from '@connectrpc/connect';
 import { createConnectTransport } from '@connectrpc/connect-node';
 import { InsightService } from '@buf/safedep_api.connectrpc_es/safedep/services/insights/v2/insights_connect.js';
 import { Ecosystem } from '@buf/safedep_api.bufbuild_es/safedep/messages/package/v1/ecosystem_pb.js';
+
 // Define an interceptor to add the API key and tenant id to each request
 function authenticationInterceptor(token: string, tenant: string): Interceptor {
 	return (next) => async (req) => {
@@ -11,13 +12,16 @@ function authenticationInterceptor(token: string, tenant: string): Interceptor {
 	};
 }
 
-export async function fetchPackageInsight() {
+export async function fetchPackageInsight({
+	packageName,
+	packageVersion,
+}: {
+	packageName: string;
+	packageVersion: string;
+}) {
 	// Read the API key and tenant id from environment variables
 	const token = process.env.SAFEDEP_API_KEY;
 	const tenantId = process.env.SAFEDEP_TENANT_ID;
-
-	console.log({ token });
-	console.log({ tenantId });
 
 	if (!token || !tenantId) {
 		throw new Error(
@@ -41,12 +45,11 @@ export async function fetchPackageInsight() {
 			packageVersion: {
 				package: {
 					ecosystem: Ecosystem.NPM,
-					name: 'lodash',
+					name: packageName,
 				},
-				version: '4.17.21',
+				version: packageVersion,
 			},
 		});
-
 		return res;
 	} catch (e) {
 		console.warn('Error during fetchPackageInsights: ', e);
