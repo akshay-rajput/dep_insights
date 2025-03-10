@@ -4,7 +4,6 @@ import { redirect } from 'next/navigation';
 import InsightsReport from '@/components/insights/InsightsReport';
 // import Button from '@/components/shared/Button';
 // import { GetPackageVersionInsightResponse } from '@buf/safedep_api.bufbuild_es/safedep/services/insights/v2/insights_pb';
- 
 
 export default async function Insights({
 	params,
@@ -18,7 +17,7 @@ export default async function Insights({
 
 	// const packageInsights = await fetchPackageInsight();
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const packageInsights:any = {
+	const packageInsights: any = {
 		packageVersion: {
 			package: {
 				ecosystem: 'ECOSYSTEM_NPM',
@@ -27,8 +26,129 @@ export default async function Insights({
 			version: '4.17.21',
 		},
 		insight: {
-			dependencies: [],
-			vulnerabilities: [],
+			dependencies: [
+				{
+					package: {
+						ecosystem: 'ECOSYSTEM_NPM',
+						name: 'accepts',
+					},
+					version: '1.3.8',
+				},
+				{
+					package: {
+						ecosystem: 'ECOSYSTEM_NPM',
+						name: 'array-flatten',
+					},
+					version: '1.1.1',
+				},
+				{
+					package: {
+						ecosystem: 'ECOSYSTEM_NPM',
+						name: 'body-parser',
+					},
+					version: '1.19.0',
+				},
+				{
+					package: {
+						ecosystem: 'ECOSYSTEM_NPM',
+						name: 'content-disposition',
+					},
+					version: '0.5.3',
+				},
+				{
+					package: {
+						ecosystem: 'ECOSYSTEM_NPM',
+						name: 'content-type',
+					},
+					version: '1.0.5',
+				},
+				{
+					package: {
+						ecosystem: 'ECOSYSTEM_NPM',
+						name: 'cookie',
+					},
+					version: '0.4.0',
+				},
+				{
+					package: {
+						ecosystem: 'ECOSYSTEM_NPM',
+						name: 'cookie-signature',
+					},
+					version: '1.0.6',
+				},
+			],
+			vulnerabilities: [
+				{
+					id: {
+						type: 'VULNERABILITY_IDENTIFIER_TYPE_GHSA',
+						value: 'GHSA-rv95-896h-c2vc',
+					},
+					summary: 'Express.js Open Redirect in malformed URLs',
+					aliases: [
+						{
+							type: 'VULNERABILITY_IDENTIFIER_TYPE_CVE',
+							value: 'CVE-2024-29041',
+						},
+					],
+					related: [
+						{
+							value: 'CGA-5389-98xc-vr78',
+						},
+						{
+							value: 'CGA-w26h-h47r-f6rx',
+						},
+						{
+							type: 'VULNERABILITY_IDENTIFIER_TYPE_CVE',
+							value: 'CVE-2024-29041',
+						},
+					],
+					severities: [
+						{
+							type: 'TYPE_CVSS_V3',
+							score: 'CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N',
+							risk: 'RISK_MEDIUM',
+						},
+					],
+					publishedAt: '2024-03-25T19:40:26Z',
+					modifiedAt: '2024-03-25T22:24:57Z',
+				},
+				{
+					id: {
+						type: 'VULNERABILITY_IDENTIFIER_TYPE_GHSA',
+						value: 'GHSA-qw6h-vgh9-j6wx',
+					},
+					summary: 'express vulnerable to XSS via response.redirect()',
+					aliases: [
+						{
+							type: 'VULNERABILITY_IDENTIFIER_TYPE_CVE',
+							value: 'CVE-2024-43796',
+						},
+					],
+					related: [
+						{
+							value: 'CGA-8w92-879x-f9wc',
+						},
+						{
+							value: 'CGA-jq8v-jx6x-3fpc',
+						},
+					],
+					severities: [
+						{
+							type: 'TYPE_CVSS_V3',
+							score: 'CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:L',
+							risk: 'RISK_MEDIUM',
+						},
+						{
+							type: 'TYPE_CVSS_V4',
+							score:
+								'CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:P/VC:N/VI:N/VA:N/SC:L/SI:L/SA:L',
+							risk: 'RISK_LOW',
+						},
+					],
+					publishedAt: '2024-09-10T19:41:04Z',
+					modifiedAt: '2024-11-18T16:27:11Z',
+				},
+			],
 			projectInsights: [
 				{
 					project: {
@@ -290,8 +410,7 @@ export default async function Insights({
 
 	return (
 		<div id='insights-page-container'>
-      <div className="mb-4">
-      </div>
+			<div className='mb-4'></div>
 
 			<InsightsReport insightsData={packageInsights} />
 		</div>
