@@ -10,6 +10,7 @@ import { Label, Pie, PieChart } from 'recharts';
 import Link from 'next/link';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import VulnerabilitiesTable from './VulnerabilitiesTable';
+import { LucideGroup } from 'lucide-react';
 
 interface VulnerabilitiesProps {
 	vulnerabilityData: Vulnerability[];
@@ -60,7 +61,7 @@ export default function Vulnerabilities({
 	);
 
 	return (
-		<div className='' id='vulnerabilities-container'>
+		<div className='flex flex-col flex-grow' id='vulnerabilities-container'>
 			{/* heading and total score */}
 			<div className='heading-group mb-5'>
 				<h3 className='mb-1 text-base font-medium'>Vulnerabilities</h3>
@@ -79,86 +80,115 @@ export default function Vulnerabilities({
 			</div>
 
 			{/* tabs */}
-			<Tabs defaultValue='chart' className=''>
-				<TabsList>
-					<TabsTrigger value='chart'>Chart</TabsTrigger>
-					<TabsTrigger value='table'>Table</TabsTrigger>
-				</TabsList>
-				<TabsContent value='chart'>
-					<div
-						id='vulnerability-chart'
-						className='grid md:grid-cols-4 items-center'
-					>
-						<ChartContainer
-							config={chartConfig}
-							className='max-h-[320px] aspect-square col-span-1 md:col-span-2'
-						>
-							<PieChart>
-								<ChartTooltip
-									cursor={false}
-									content={<ChartTooltipContent hideLabel />}
-								/>
-								<Pie
-									data={vChartData}
-									dataKey='count'
-									nameKey='risk'
-									innerRadius={80}
-									strokeWidth={3}
-								>
-									<Label
-										content={({ viewBox }) => {
-											if (viewBox && 'cx' in viewBox && 'cy' in viewBox) {
-												return (
-													<text
-														x={viewBox.cx}
-														y={viewBox.cy}
-														textAnchor='middle'
-														dominantBaseline='middle'
-														fill='#eee'
-													>
-														<tspan
-															x={viewBox.cx}
-															y={viewBox.cy}
-															className='fill-foreground text-3xl text-white font-bold'
-														>
-															{totalVulnerabilities}
-														</tspan>
-														<tspan
-															x={viewBox.cx}
-															y={(viewBox.cy || 0) + 24}
-															className='fill-muted-foreground text-gray-200'
-														>
-															Vulnerabilities
-														</tspan>
-													</text>
-												);
-											}
-										}}
-									/>
-								</Pie>
-							</PieChart>
-						</ChartContainer>
-
-						<div className='legend text-white mb-5'>
-							{vChartData.map((chartRow) => (
-								<span
-									className='flex gap-3 items-center relative mb-3'
-									key={chartRow.risk}
-								>
-									<span
-										className='rounded-full h-[12px] w-[12px]'
-										style={{ backgroundColor: chartRow.fill }}
-									></span>
-									{chartRow.risk}
-								</span>
-							))}
-						</div>
+			<div className='tabs-container flex flex-grow'>
+				<Tabs defaultValue='chart' className='flex flex-col flex-grow'>
+					<div className='tablist'>
+						<TabsList className='mb-2'>
+							<TabsTrigger value='chart'>Chart</TabsTrigger>
+							<TabsTrigger value='table'>Table</TabsTrigger>
+						</TabsList>
 					</div>
-				</TabsContent>
-				<TabsContent value='table'>
-          <VulnerabilitiesTable vulnerabilities={vulnerabilityData} />
-        </TabsContent>
-			</Tabs>
+					<TabsContent
+						value='chart'
+						className={
+							!vulnerabilityData?.length
+								? 'data-[state=active]:flex data-[state=active]:flex-grow '
+								: ''
+						}
+					>
+						{vulnerabilityData?.length ? (
+							<div
+								id='vulnerability-chart'
+								className='grid md:grid-cols-4 items-center'
+							>
+								<ChartContainer
+									config={chartConfig}
+									className='max-h-[320px] aspect-square col-span-1 md:col-span-2'
+								>
+									<PieChart>
+										<ChartTooltip
+											cursor={false}
+											content={<ChartTooltipContent hideLabel />}
+										/>
+										<Pie
+											data={vChartData}
+											dataKey='count'
+											nameKey='risk'
+											innerRadius={80}
+											strokeWidth={3}
+										>
+											<Label
+												content={({ viewBox }) => {
+													if (viewBox && 'cx' in viewBox && 'cy' in viewBox) {
+														return (
+															<text
+																x={viewBox.cx}
+																y={viewBox.cy}
+																textAnchor='middle'
+																dominantBaseline='middle'
+																fill='#eee'
+															>
+																<tspan
+																	x={viewBox.cx}
+																	y={viewBox.cy}
+																	className='fill-foreground text-3xl text-white font-bold'
+																>
+																	{totalVulnerabilities}
+																</tspan>
+																<tspan
+																	x={viewBox.cx}
+																	y={(viewBox.cy || 0) + 24}
+																	className='fill-muted-foreground text-gray-200'
+																>
+																	Vulnerabilities
+																</tspan>
+															</text>
+														);
+													}
+												}}
+											/>
+										</Pie>
+									</PieChart>
+								</ChartContainer>
+
+								<div className='legend text-white mb-5'>
+									{vChartData.map((chartRow) => (
+										<span
+											className='flex gap-3 items-center relative mb-3'
+											key={chartRow.risk}
+										>
+											<span
+												className='rounded-full h-[12px] w-[12px]'
+												style={{ backgroundColor: chartRow.fill }}
+											></span>
+											{chartRow.risk}
+										</span>
+									))}
+								</div>
+							</div>
+						) : (
+							<div className='empty-state flex-grow border border-gray-700 rounded-lg flex flex-col justify-center items-center'>
+								<span className='text-gray-600 text-4xl'>
+									<LucideGroup size={50} />
+								</span>
+								<span className='text-gray-500 text-sm mt-4'>
+									No vulnerabilities detected
+								</span>
+							</div>
+						)}
+					</TabsContent>
+					<TabsContent
+						value='table'
+						className={
+							!vulnerabilityData?.length
+								? 'data-[state=active]:flex data-[state=active]:flex-grow '
+								: ''
+						}
+					>
+						<VulnerabilitiesTable vulnerabilities={vulnerabilityData} />
+					</TabsContent>
+				</Tabs>
+			</div>
 		</div>
 	);
 }
