@@ -1,35 +1,12 @@
-# Next JumpStart
+# Dep Insights
 
-This is a starter template, designed to kickstart your Next.js projects with the latest technologies and tools.
+A sample app that uses [safedep api](https://docs.safedep.io/guides/insights-api-using-typescript) to fetch insights of npm packages.
 
-![Screenshot of Next JumpStart template](public/homepage.png)
-
----
-
-## What's Included
-
-- **🚀 Next.js v15** -
-  The latest version of Next.js, featuring the new App Directory and Server Components for an enhanced developer experience.
-
-- **🎨 Tailwind CSS** -
-  A utility-first CSS framework to create responsive and modern designs efficiently.
-
-- **🧩 shadcn/ui** -
-  Prebuilt, accessible, and customizable UI components to speed up development.
-
-- **⚙️ TypeScript** -
-  A strongly typed language that ensures maintainable and robust codebases.
-
-- **🛠️ Pre-Commit Hooks** -
-  Husky pre-commit hook configured for formatting and type-checking staged files using TypeScript (`tsc`) and Prettier.
-
-For more information and recommendations on additional libraries for common use-cases, visit the `/about` page.
+![Screenshot of Dep Insights](public/safedep.png)
 
 ---
 
-## Getting Started
-
-### Installation
+## Installation
 
 1. Clone the repository:
 
@@ -57,22 +34,6 @@ For more information and recommendations on additional libraries for common use-
 
 ---
 
-## Customization
-
-### Fonts
-
-- By default, this template uses two Google Fonts. You can customize them in the `app/layout.tsx` file by updating the font imports and variables.
-
-### Dark Mode
-
-- To add Dark mode, check out [shadcn/ui docs](https://ui.shadcn.com/docs/dark-mode). Alternatively you can programmatically add `"dark"` class to the body for toggling dark mode for components.
-
-### Pre-Commit Hooks
-
-- Husky ensures all staged files are formatted and type-checked before committing. Modify the `.husky` configuration as needed.
-
----
-
 ## License
 
-This template is open-source and available under the [MIT License](LICENSE).
+This repo is open-source and available under the [MIT License](LICENSE).
