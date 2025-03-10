@@ -27,10 +27,11 @@ export default function ScoreCard({ chartConfig, chartData }: ScoreCardProps) {
 						left: 20,
 						bottom: 5,
 					}}
+					barSize={16}
 					barGap={1}
 				>
-					<XAxis type='number' dataKey='score' scale={'linear'} />
-					<YAxis dataKey='name' type='category' tickMargin={10} />
+					<XAxis type='number' dataKey='score' scale={'linear'} tick={{ fill: '#bbb' }} />
+					<YAxis dataKey='name' type='category' tickMargin={10} width={120} tick={{ fill: '#bbb' }}   />
 					<ChartTooltip cursor={false} content={<ChartTooltipContent />} />
 					<Bar dataKey='score' fill='#2563eb' radius={5} />
 				</BarChart>
