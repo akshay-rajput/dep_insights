@@ -2,7 +2,7 @@
 
 A sample app that uses [safedep api](https://docs.safedep.io/guides/insights-api-using-typescript) to fetch insights of npm packages.
 
-![Screenshot of Dep Insights](public/safedep.png)
+![Screenshot of Dep Insights](public/depinsights.png)
 
 ---
 
@@ -11,7 +11,7 @@ A sample app that uses [safedep api](https://docs.safedep.io/guides/insights-api
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/akshay-rajput/next-jump-start.git
+   git clone https://github.com/akshay-rajput/dep_insights.git
    ```
 
 2. Install dependencies:
