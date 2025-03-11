@@ -52,7 +52,7 @@ export default function Home() {
 				</p>
 			</div>
 
-			<div className='flex flex-wrap md:gap-6 gap-2 items-center md:justify-stretch px-4'>
+			<div className='flex flex-wrap md:gap-6 gap-2 items-center md:justify-between px-4'>
 				{packageOptions.map((pkg) => (
 					<Card key={pkg.id} className='hover:shadow-sm hover:cursor-pointer'>
 						<div

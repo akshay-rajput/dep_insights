@@ -57,7 +57,7 @@ export default function VersionsTable({
 											{version.version}
 										</TableCell>
 										<TableCell>
-											{JSON.stringify(version.publishedAt)?.slice(0, 10)}
+											{JSON.stringify(version.publishedAt)?.slice(1, 11)}
 										</TableCell>
 										<TableCell className=''>
 											<Link
